@@ -147,7 +147,7 @@ public class BoidsExample {
     static class World extends JPanel{
         Random rand = new Random(0);
         final int size;
-        final double radius = 50;
+        final double radius = 25;
         final Point center;
         List<Boid> boids;
 
@@ -163,7 +163,7 @@ public class BoidsExample {
             List<Boid> next = boids.stream()
                     .map(boid -> {
                         List<Point> inRadius = boids.stream()
-                                .filter(b -> b.position.substract(boid.position).norm()<radius && b!=boid)
+                                .filter(b -> b!=boid && b.position.substract(boid.position).norm()<radius)
                                 .map(b -> b.position)
                                 .collect(Collectors.toList());
 
@@ -174,11 +174,12 @@ public class BoidsExample {
                                     return diff.scale(norm*norm);
                                 })
                                 .reduce(Vector.identity(), Vector::add);
+                        avoidance = Vector.identity();
                         Vector cohesion = Point.massCenter(inRadius).substract(boid.position);
 
                         Vector containment = Vector.identity();
-                        if(boid.position.inRecangle(new Point(0,0), new Point(400, 400))){
-                            containment = center.substract(boid.position).normalized().scale(5);
+                        if(!boid.position.inRecangle(new Point(0,0), new Point(400, 400))){
+                            containment = center.substract(boid.position).normalized().scale(10);
                         }
                         return boid.update(avoidance.add(containment).add(cohesion), dt);
                     })
@@ -190,7 +191,7 @@ public class BoidsExample {
             for(int i=0; i<50; ++i){
                 int x = rand.nextInt(size), y = rand.nextInt(size);
                 double angle = rand.nextDouble()*2*Math.PI;
-                double dx=Math.cos(angle)*10, dy=Math.sin(angle)*10;
+                double dx=Math.cos(angle)*50, dy=Math.sin(angle)*50;
                 boids.add(new Boid(new Point(x,y), new Vector(dx,dy)));
             }
         }
