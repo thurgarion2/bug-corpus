@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.function.Supplier;
+
 public class Bitwise {
     public static void main(String[] args) {
         System.out.println(bitCounter(0));

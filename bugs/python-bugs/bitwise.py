@@ -9,5 +9,4 @@ def bit_counter(x : int):
         x >>= 1
     return bits
 
-x = int(input())
-print(bit_counter(x))
+print(bit_counter(-1))
