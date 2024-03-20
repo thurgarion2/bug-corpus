@@ -3,10 +3,22 @@ import java.util.function.Supplier;
 class Synthax {
 
     public static void main(String[] args){
+    	statements();
+        controlFlow();
+        exceptions();
+    }
+
+    public static void statementsOnSameLine(){
+        int x = 0;
+        foo("hi", foo("ok", 1, x+25), ++x);
+
+        for(int i=0; i<10; ++i){
+
+        }
 
     }
 
-    public void statements(){
+    public static void statements(){
         // assignements
         int x = 0;
         int a=0, b=1; int c=2+a*b%4;
@@ -29,7 +41,7 @@ class Synthax {
         g.get();
     }
 
-    public void controlFlow(){
+    public static void controlFlow(){
 
         int x = 10;
 
@@ -58,7 +70,7 @@ class Synthax {
         }
     }
 
-    public void exceptions(){
+    public static void exceptions(){
         try{
             throw new Exception("not ok");
         }catch(Exception e){
@@ -90,7 +102,7 @@ class Synthax {
         }
     }
 
-    public int foo(String x, int a, int b){
+    public static int foo(String x, int a, int b){
         if(x.equals("ok")){
             return a+b;
         }else{

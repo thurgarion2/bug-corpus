@@ -8,8 +8,8 @@ import java.util.Random;
 public class Shuffle {
     static Random rand = new Random(9);
     public static void main(String[] args) {
-        List<Integer> l = new ArrayList<>(Arrays.asList(1,2,3,4,5));
-        shuffle(l);
+//        List<Integer> l = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+//        shuffle(l);
     }
 
     public static void shuffle(List<Integer> l){
