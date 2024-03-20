@@ -1,0 +1,76 @@
+Synthax.java:03  method enter class initialization method of Synthax
+                 method exit method <clinit> exits
+Synthax.java:05  method enter void main(String[] args)
+Synthax.java:06     statements();  
+Synthax.java:11     method enter void statements()
+Synthax.java:13        int x:0 = 0;  
+Synthax.java:14        int a:0 =0, b:1 =1; int c:??? =2+a*b%4;
+		       ^^^^^^^^^^^^^^^^^
+Synthax.java:14        int a:0 =0, b:1 =1; int c:??? =2+a*b%4;  
+				           ^^^^^^^^^^^^^^^^^
+Synthax.java:15        int y:20 = x==b ? 10 : 20;
+Synthax.java:18        Synthax.foo("ok":String, 1:int, 2:int); // formatage  ?????
+Synthax.java:95        method enter int foo(String x:"ok", int a:1, int b:2) 
+Synthax.java:96           if(x.equals("ok")){
+Synthax.java:97              return a+b:???;
+                       method exit method foo exits
+Synthax.java:19        foo("not ok", foo("ok", 1, 5+10), 20-50);
+			             ^^^^^^^^^^^^^^^^^^			             
+Synthax.java:95        method enter Synthax.foo(String x:"ok", int a:1, int b:15)
+Synthax.java:96           if(x.equals("ok")){
+Synthax.java:97              return a+b:???;
+                       method exit method foo exits
+Synthax.java:19        foo("not ok", foo("ok", 1, 5+10), 20-50);
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                       
+Synthax.java:95        method enter int foo(String x:"not ok", int a:???, int b:-30)
+                          ...
+                       method exit method foo exits
+Synthax.java:22        Foo f = new Foo("ok", 25);
+                       ...
+Synthax.java:23        f.a = "???";
+Synthax.java:24        f.foo(5);
+Synthax.java:86        method enter void Foo.foo(int b:5)
+Synthax.java:87           this.b:5=b;
+                       method exit method foo exits
+                       ...                       
+Synthax.java:28        Supplier<Integer> g = () -> { return 2; };
+Synthax.java:31        g.get();  // expression statement at Synthax.java:31:9       
+Synthax.java:28        method enter Integer ???
+Synthax.java:31           return 2;
+                       method exit method
+                    method exit method statements exits
+Synthax.java:07     controlFlow();
+Synthax.java:34     method enter controlFlow()
+                       ...
+Synthax.java:38        if(x%2==0:true){
+Synthax.java:39           true-branch -> System.out.println("aaaa");  
+Synthax.java:46        int a = 0;
+Synthax.java:47        while(a:0<10:true){
+Synthax.java:48           a:1+=1;
+                          ...
+Synthax.java:47        =====a:1<10:true===  
+Synthax.java:48           a:2+=1;
+                          ...
+Synthax.java:47        =====a:2<10:true===  
+Synthax.java:48           a:3+=1;
+                          ...                          
+     
+Main.java:01  method enter class initialization method of Main
+              method exit method <clinit> exits
+Main.java:03  method enter void main(String[] args)
+Main.java:04     statementsOnSameLine();  // expression statement at Main.java:4:9 
+Main.java:07     method enter void statementsOnSameLine() 
+Main.java:08        int x:0=0, y:1=1; if(x==y && "aaa".equals("bbbb")){foo("hi",1,2);}else{x=10;}
+                    ^^^^^^^^^^^^^^^^    
+Main.java:08        int x=0, y=1; if(x==y && "aaa".equals("bbbb"):false){foo("hi",1,2);}else{x=10;} 
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    
+Main.java:08        int x=0, y=1; if(x==y && "aaa".equals("bbbb")){foo("hi",1,2);}else{x:10=10;} 
+                                                                                       ^^^^^^^^ 
+Main.java:09        int a = foo("ho",1,2);
+                            ^^^^^^^^^^^^^
+Main.java:12        method enter foo(String x, int a, int b) 
+Main.java:13           return a;  
+                    method exit method foo exits
+                 method exit method statementsOnSameLine exits
+              method exit method main exits
+
